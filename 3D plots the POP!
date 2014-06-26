@@ -12,3 +12,16 @@ y<-sites[,2]
 z<-sites[,3]
 
 anaglyph.plot(x, y, z, left = "red", right = "cyan", depth = "med", style = "pop-out", pch=20, xlab="Axis 1", ylab="Axis 2")
+
+#Produce a 3D plot using 'ordiplot3d' function 
+
+ordination<-ordiplot3d(NMDS, display = "sites", choices = 1:3, xlab="Axis 1", ylab="Axis 2", zlab="Axis 3", type="n") #make cyan 3D ordination 
+points(ordination, "points", pch=20, col="cyan")
+dev.copy2eps() #save as .eps and rename "cyan"
+
+
+ordination<-ordiplot3d(NMDS, display = "sites", choices = 1:3, xlab="Axis 1", ylab="Axis 2", zlab="Axis3", type="n")#make cyan 3D ordination 
+points(ordination, "points", pch=20, col="red")
+
+dev.copy2eps() #save as .eps and rename "red" 
+
