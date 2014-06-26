@@ -1,0 +1,5 @@
+#Produce 3D anaglyphs in R using the 'anaglyph' package
+library(anaglyph)
+library(vegan)
+
+data(varspec)#example data 
