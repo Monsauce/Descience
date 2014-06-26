@@ -1,0 +1,14 @@
+#Produce 3D anaglyphs in R using the 'anaglyph' package
+library(anaglyph)
+library(vegan)
+
+
+species<-data(varespec) #example data from vegan package 
+NMDS<-metaMDS(varespec, k=3) #where k equal the number of dimensions 
+sites <- scores(NMDS, display = "sites") #run NMDS 
+
+x<-sites[,1] #assign each dimension to an object 
+y<-sites[,2]
+z<-sites[,3]
+
+anaglyph.plot(x, y, z, left = "red", right = "cyan", depth = "med", style = "pop-out", pch=20, xlab="Axis 1", ylab="Axis 2")
