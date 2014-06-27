@@ -7,7 +7,7 @@ species<-data(varespec) #example data from vegan package
 NMDS<-metaMDS(varespec, k=3) #where k equal the number of dimensions 
 sites <- scores(NMDS, display = "sites") #run NMDS 
 
-x<-sites[,1] #assign each dimension to an object 
+x<-sites[,1] #assign each dimension or axis to an object 
 y<-sites[,2]
 z<-sites[,3]
 
