@@ -1,0 +1,25 @@
+#icons in R 
+install_github("devtools")
+library(devtools)
+install_github("sckott/rphylopic")
+library(rphylopic) #install Rphylopic package 
+
+#simulated data 
+species<-c("lion", "tiger", "bear")
+day<-c(1:60)
+population<-c(rnorm(60,mean=15, sd=2))
+OHMY<-data.frame(species,day,population)
+
+#get images 
+lion <- get_image("e2015ba3-4f7e-4950-9bde-005e8678d77b", size = "512")[[1]]#lion image, "size" is the height pixel dimension
+tiger <- get_image("e148eabb-f138-43c6-b1e4-5cda2180485a", size = "512")[[1]]#tiger image, "size" is the height pixel dimension
+bear <- get_image("992a5a0c-f8dd-451f-b874-fcfc4aded21b", size = "512")[[1]]#bear image, "size" is the height pixel dimension
+
+#plot 
+library(ggplot2)#load graphing package 
+require(gridExtra) #required to make grid plots 
+lionplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="lion"))+add_phylopic(lion)+theme_minimal()+geom_line()
+tigerplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="tiger"))+add_phylopic(tiger)+theme_minimal()+geom_line()
+bearplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="bear"))+add_phylopic(bear)+theme_minimal()+geom_line()
+grid.arrange(lionplot, tigerplot, bearplot, ncol=3)
+
