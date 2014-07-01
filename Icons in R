@@ -5,9 +5,9 @@ install_github("sckott/rphylopic")
 library(rphylopic) #install Rphylopic package 
 
 #simulated data 
-species<-c("lion", "tiger", "bear")
-day<-c(1:60)
-population<-c(rnorm(60,mean=15, sd=2))
+species<-rep(c("lion", "tiger", "bear"),each = 60)
+day<-c(1:30, 1:30, 1:30)
+population<-c(rnorm(30,mean=15, sd=2),rnorm(30,mean=9, sd=2),rnorm(30,mean=30, sd=2))
 OHMY<-data.frame(species,day,population)
 
 #get images 
@@ -18,8 +18,8 @@ bear <- get_image("992a5a0c-f8dd-451f-b874-fcfc4aded21b", size = "512")[[1]]#bea
 #plot 
 library(ggplot2)#load graphing package 
 require(gridExtra) #required to make grid plots 
-lionplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="lion"))+add_phylopic(lion)+theme_minimal()+geom_line()
-tigerplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="tiger"))+add_phylopic(tiger)+theme_minimal()+geom_line()
-bearplot<-ggplot(OHMY, aes(x=day, y=population, OHMY$Species=="bear"))+add_phylopic(bear)+theme_minimal()+geom_line()
+lionplot<-ggplot(OHMY[1:60,], aes(x=day, y=population))+add_phylopic(lion)+theme_minimal()+geom_point()
+tigerplot<-ggplot(OHMY[61:120,], aes(x=day, y=population))+add_phylopic(tiger)+theme_minimal()+geom_point()
+bearplot<-ggplot(OHMY[121:180,], aes(x=day, y=population))+add_phylopic(bear)+theme_minimal()+geom_point()
 grid.arrange(lionplot, tigerplot, bearplot, ncol=3)
 
