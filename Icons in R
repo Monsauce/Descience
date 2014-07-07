@@ -13,7 +13,7 @@ OHMY<-data.frame(species,day,population)
 #get images 
 lion <- get_image("e2015ba3-4f7e-4950-9bde-005e8678d77b", size = "512")[[1]]#lion image, "size" is the height pixel dimension
 tiger <- get_image("e148eabb-f138-43c6-b1e4-5cda2180485a", size = "512")[[1]]#tiger image, "size" is the height pixel dimension
-bear <- get_image("992a5a0c-f8dd-451f-b874-fcfc4aded21b", size = "512")[[1]]#bear image, "size" is the height pixel dimension
+bear <- get_image("992a5a0c-f8dd-451f-b874-fcfc4aded21b", size = "512")[[1]]#(water)bear image, "size" is the height pixel dimension
 
 #plot 
 library(ggplot2)#load graphing package 
