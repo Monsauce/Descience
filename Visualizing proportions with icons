@@ -1,0 +1,30 @@
+#visualizing proportions with icons
+
+devtools::install_github("sckott/rphylopic")
+library('rphylopic')
+library(ggplot2)
+library(MASS)
+
+data(Animals) #load in animal brain and body weight data sample data  
+catbrain<-Animals[11,2] #get brain weight for house cat 
+triceratopsbrain<-Animals[16,2] #get brain weight for triceratops 
+
+proportion<-catbrain/triceratopsbrain #calculate what the ratio is between the two species 
+
+posx <- c(4.9,5, 6,7) #set the x position of the icons, the first and last numbers bounds 
+posy <- c(4,4.5,5,6) #set the y position
+sizey <- c(proportion,1) #scale the icon height to be proportional to ratio of interest 
+cols<-c("black", "#989898") #select the colours of the icons
+
+CatImage <- get_image("23cd6aa4-9587-4a2e-8e26-de42885004c9", size = 512)[[1]] #get image of cat from phylopic
+TriceratopsImage<- get_image("9146defb-cd90-4136-af96-7021890d8ca7", size = 512)[[1]] #get image of triceratops from phylopic
+
+p <- ggplot(data.frame(Image.x = posx, Image.y = posy), aes(Image.x, Image.y))
+
+p <- p + add_phylopic(CatImage, 1, posx[2], posy[2], sizey[1], cols[1]) #call x,y, colours and size of image
+
+p+add_phylopic(TriceratopsImage, 1, posx[3], posy[3], sizey[2], cols[2])+
+  theme(line = element_blank(), text = element_blank(),line = element_blank(),title = element_blank(), panel.background = element_blank())
+ 
+
+ggsave(last_plot(), file="BRAINS!.png") #save plot 
