@@ -1,6 +1,7 @@
 #plot two horizontal bar charts wih a shared axis
 library(plyr) #required packages
 library(ggplot2)
+library(gridExtra)
 
 ####simulated data####
 
